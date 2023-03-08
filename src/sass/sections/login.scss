@@ -1,0 +1,17 @@
+form.login, form.register {
+    button {
+        background-color: $default-red;
+    }
+}
+
+@media screen and (max-width: $breaking-point) {
+    form.login, form.register {
+        >div {
+            width: 100% !important;
+        }
+
+        >button {
+            width: 100% !important;
+        }
+    }
+}

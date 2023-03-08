@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static/images/favicon.ico" />
+    <script src="https://kit.fontawesome.com/04d50240d2.js" crossorigin="anonymous"></script>
+    <script src="/static/js/main.js" defer type="module"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css" />
+    <title>Biograf Luleå</title>
+    <meta name="name" content="<%= meta.name %>">
+    <meta name="description" content="<%= meta.description %>">
+  </head>
+
+  <body>
+    <header class="sec">
+      <div class="header-content-wrap sec-cont">
+        <a href="/" class="logo"><img src="../static/images/Logo.png" alt="logo" /></a>
+        <nav class="header-nav">
+          <button class="header-nav-toggle" aria-label="Öppna meny"></button>
+          <menu class="header-menu">
+            <% headerMenu.forEach(function(a) { %>
+            <li>
+              <a class="header-menu-item <% if (a.active) { %>active<% } %>" href="<%= a.link %>">
+                <%= a.label %>
+              </a>
+            </li>
+            <% }); %>
+          </menu>
+        </nav>
+      </div>
+    </header>
+  </body>
+</html>

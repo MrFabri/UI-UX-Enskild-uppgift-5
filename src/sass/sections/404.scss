@@ -1,0 +1,31 @@
+.not-found {
+    margin-top: 3rem;
+
+    h1,
+    p,
+    a {
+        color: $second-color;
+    }
+
+    h1 {
+        margin-bottom: 1rem;
+    }
+
+    p {
+        line-height: 2rem;
+
+        span {
+            background-color: rgb(105, 105, 105);
+            border-radius: .5rem;
+            padding: .2rem .8rem;
+        }
+    }
+
+    a {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        background-color: $default-red;
+    }
+}

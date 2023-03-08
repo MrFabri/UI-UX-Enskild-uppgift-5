@@ -1,0 +1,13 @@
+<h2 class="movies-h2"><%= movieHeader %></h2>
+<ul class="movies-list">
+  <% movies.forEach(function(movie) { %>
+  <li class="movies-list-item">
+    <a href="/movies/<%= movie.id %>"
+      ><img src="<%= movie.attributes.image.url %>" /><%
+      if(movie.attributes.title.length > 17) { %> <%=
+      movie.attributes.title.slice(0,17) + "..."%><%} else {%> <%=
+      movie.attributes.title %><% } %></a
+    >
+  </li>
+  <% }); %>
+</ul>

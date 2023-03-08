@@ -1,0 +1,21 @@
+<%- include ("./layout/header") %> <%- include ("./layout/menu") %>
+  <script src="/static/js/movie.js" defer></script>
+  
+  <main class="sec">
+    <article class="movie sec-cont">
+      <div>
+        <h1 class="title"><%- title %></h1>
+      </div>
+      <div class="movie-text">
+        <img src="<%- image %>" alt="movie image" class="movie-img">
+        <p class="intro"><%- intro %></p>
+      </div><h2 class="rating sec-cont"></h2>
+    </article>
+    
+    <section class="screenings sec-cont"></section>
+    <section class="review-container sec-cont"></section>
+    <section class="review-box sec-cont"><%- include ("./layout/review") %></section>
+  </main>
+<%- include ("./layout/footer") %>
+</body>
+</html>

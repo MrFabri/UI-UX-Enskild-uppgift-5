@@ -1,0 +1,32 @@
+{
+  "name": "ui-ux-enskild-uppgift5",
+  "version": "1.0.0",
+  "description": "CinemaSite-SSR",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "concurrently --kill-others \"npm run dev:server\" \"npm run sass:watch\"",
+    "build": "npm run sass:build",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "dev:server": "nodemon index.js",
+    "sass:build": "sass --no-source-map src/sass/main.scss static/css/main.css --style compressed",
+    "sass:watch": "sass --no-source-map --watch src/sass/main.scss static/css/main.css"
+  },
+  "keywords": [],
+  "author": "Fabricio O. Flores",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "jest": "^29.4.1",
+    "nodemon": "^2.0.20",
+    "sass": "^1.58.0",
+    "supertest": "^6.3.3"
+  },
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "marked": "^4.2.12",
+    "node-fetch": "^3.3.0"
+  }
+}
