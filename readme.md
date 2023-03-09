@@ -14,6 +14,14 @@ Skapa ett git-repo (eller en fork av biograf-repot) där du laddar upp en webbap
 <b>Login:</b> HTML5-formulär där användaren loggar in med användarnamn och lösenord. Informationen skickas med submit så objektet kan fångas upp i JavaScript.
 </li>
 <br>
+
 Använd ett av följande ramverk för styling: Bootstrap, Tailwind eller Material.
+`Bootstrap`
 
 Redovisa med en länk till ditt repo, gärna med en deployad version i Github pages.
+<a href="https://github.com/MrFabri/UI-UX-Enskild-uppgift-5">Github repo</a>
+
+#### Bilder:
+<img src="https://cdn.discordapp.com/attachments/557975354082590741/1083344368762634310/image.png">
+<img src="https://cdn.discordapp.com/attachments/557975354082590741/1083344899203678248/image.png">
+<img src="https://cdn.discordapp.com/attachments/557975354082590741/1083344613189877901/image.png">
