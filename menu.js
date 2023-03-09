@@ -15,6 +15,10 @@ const menu = [
         label: "Presentkort",
         link: "/UC",
     },
+    {
+        label: "Logga in",
+        link: "/login",
+    },
 ];
 
 export default menu;

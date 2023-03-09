@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
 
 router.get("/login", (req, res) => {
   res.render("login", {
-    headerMenu: headerMenu,
+    headerMenu: menuWithActive(headerMenu, "/login"),
     meta: {
       name: title,
       description: description

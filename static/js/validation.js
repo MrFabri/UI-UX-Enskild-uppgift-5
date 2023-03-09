@@ -32,12 +32,55 @@ function samePass(pass, confirmPass) {
 // ********* Form Functions ********* \\
 
 // Input validation in real time!!
+const dropdownTemplate = `
+<div class="btn-group dropup">
+  <button 
+    type="button" 
+    class="btn btn-secondary dropdown-toggle" 
+    data-bs-toggle="dropdown" 
+    aria-expanded="false"
+    style="outline: none; background-color: unset; padding: 0; border: none; width: 1px;"
+    >
+        <i class="fa-solid fa-circle-info text-danger"></i>
+    /button>
+  <ul class="dropdown-menu">
+    <li>
+        <p class="dropdown-item" style="font-size: .7rem;">
+        Minst 1 stor bokstav.
+        </p>
+    </li>
+    <li>
+        <p class="dropdown-item" style="font-size: .7rem;">
+        Minst 1 liten bokstav.
+        </p>
+    </li>
+    <li>
+        <p class="dropdown-item" style="font-size: .7rem;">
+        Minst 1 specialtecken.
+        </p>
+    </li>
+    <li>
+        <p class="dropdown-item" style="font-size: .7rem;">
+        Minst 1 nummer.
+        </p>
+    </li>
+    <li>
+        <p class="dropdown-item" style="font-size: .7rem;">
+        Max 30 tecken.
+        </p>
+    </li>
+  </ul>
+</div>
+`;
+
 const formInputs = document.getElementsByTagName('form')[0].getElementsByTagName('input');
 for (i = 0; i < formInputs.length; i++) {
     let input = formInputs[i];
     switch (input.type) {
         case 'email':
             let emailInput = input;
+            let errorField = document.createElement('span');
+            emailInput.parentNode.getElementsByTagName('label')[0].appendChild(errorField);
 
             // For confirming emails
             if (emailInput.id === 'registerConfirmMail') {
@@ -45,38 +88,45 @@ for (i = 0; i < formInputs.length; i++) {
                     const registerMail = document.querySelector('#registerMail');
                     if (registerMail && !registerMail.value) {
                         emailInput.value = '';
-                        alert('You must write the email first')
+                        errorField.innerHTML = `<br><small class="text-danger" style="font-size: .7rem;">Du måste fylla i mejl fältet först</small>`;
+                        return;
                     }
 
-                    if (!validateEmail(emailInput.value)) {
+                    // Starts the email validation
+                    if(!sameEmail(registerMail.value, emailInput.value)) {
                         emailInput.classList.remove('border-success');
                         emailInput.classList.add('border-danger');
-                    } else if(!sameEmail(registerMail.value, emailInput.value)) {
-                        emailInput.classList.remove('border-success');
-                        emailInput.classList.add('border-danger');
+                        errorField.innerHTML = `<br><small class="text-danger" style="font-size: .7rem;">Matchar inte mejlfältet</small>`;
                     } else {
                         emailInput.classList.remove('border-danger');
                         emailInput.classList.add('border-success');
+                        errorField.innerHTML = '';
                     }
                 });
             } else {
-                // For all email inputs
+                // For all the email inputs
+                // Creates error field
+
                 emailInput.addEventListener("input", () => {
                     const registerConfirmMail = document.querySelector('#registerConfirmMail')
-                    // Checks if that field exists
+
+                    // Checks if that field exists and if it has a value
                     if (registerConfirmMail && registerConfirmMail.value) {
                         registerConfirmMail.value = '';
                         registerConfirmMail.classList.remove('border-success');
-                        registerConfirmMail.classList.add('border-danger');
+                        registerConfirmMail.classList.remove('border-danger');
                         //Clears the confirm password field
                     }
-                    
+
+                    // Starts the email validation
                     if (!validateEmail(emailInput.value)) {
                         emailInput.classList.remove('border-success');
                         emailInput.classList.add('border-danger');
+                        errorField.innerHTML = `<br><small class="text-danger" style="font-size: .7rem;">Detta är inte ett giltigt mejl</small>`;
                     } else {
                         emailInput.classList.remove('border-danger');
                         emailInput.classList.add('border-success');
+                        errorField.innerHTML = '';
                     }
                 });
             }
@@ -84,45 +134,53 @@ for (i = 0; i < formInputs.length; i++) {
 
         case 'password':
             let passInput = input;
+            // Creates error field
+            let passErrorField = document.createElement('span');
+            passInput.parentNode.getElementsByTagName('label')[0].appendChild(passErrorField);
 
-            // For confirming passoword
+            // For confirming password inputs
             if (passInput.id === 'registerConfirmPassword') {
                 passInput.addEventListener("input", () => {
                     const registerPassword = document.querySelector('#registerPassword');
                     if (registerPassword && !registerPassword.value) {
                         passInput.value = '';
-                        alert('You must write the password first')
+                        passErrorField.innerHTML = `<br><small class="text-danger" style="font-size: .7rem;">Du måste fylla i lösenordsfältet först</small>`;
+                        return;
                     }
 
-                    if (!validatePassword(passInput.value)) {
+                    // Starts the password validation
+                    if(!samePass(registerPassword.value, passInput.value)) {
                         passInput.classList.remove('border-success');
                         passInput.classList.add('border-danger');
-                    } else if(!samePass(registerPassword.value, passInput.value)) {
-                        passInput.classList.remove('border-success');
-                        passInput.classList.add('border-danger');
+                        passErrorField.innerHTML = `<br><small class="text-danger" style="font-size: .7rem;">Matchar inte lösenordsfältet</small>`;
                     } else {
                         passInput.classList.remove('border-danger');
                         passInput.classList.add('border-success');
+                        passErrorField.innerHTML = '';
                     }
                 });
             } else {
                 // For all password inputs
+
                 passInput.addEventListener("input", () => {
                     const registerConfirmPassword = document.querySelector('#registerConfirmPassword')
-                    // Checks if that field exists
+                    // Check if that field exists and if it has a value
                     if (registerConfirmPassword && registerConfirmPassword.value) {
                         registerConfirmPassword.value = ''
                         registerConfirmPassword.classList.remove('border-success');
-                        registerConfirmPassword.classList.add('border-danger');
-                        //Clears the confirm password field
+                        registerConfirmPassword.classList.remove('border-danger');
+                        // Clears the confirm password field
                     }
 
+                    // Starts the password validation
                     if (!validatePassword(passInput.value)) {
                         passInput.classList.remove('border-success');
                         passInput.classList.add('border-danger');
+                        passErrorField.innerHTML = `<br><small class="text-danger" style="font-size: .7rem;">Lösenordet matchar inte kraven! ${dropdownTemplate}</small>`;
                     } else {
                         passInput.classList.remove('border-danger');
                         passInput.classList.add('border-success');
+                        passErrorField.innerHTML = '';
                     }
                 });
             }
